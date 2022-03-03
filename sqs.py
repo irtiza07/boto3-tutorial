@@ -5,28 +5,28 @@ sqs = boto3.resource("sqs")
 
 # !TODO Create the queue
 # Talk about Standard Queue vs FIFO queue
-# queue = sqs.create_queue(QueueName="test", Attributes={"DelaySeconds": "5"})
-# print(queue.url)
-# print(queue.attributes)
+queue = sqs.create_queue(QueueName="test", Attributes={"DelaySeconds": "5"})
+print(queue.url)
+print(queue.attributes)
 
 # !TODO Use existing queue
-# queue = sqs.get_queue_by_name(QueueName="test")
+queue = sqs.get_queue_by_name(QueueName="test")
 
 # !TODO Get all available queues
-# for q in sqs.queues.all():
-#     print(q.url)
+for q in sqs.queues.all():
+    print(q.url)
 
 # !TODO Send messages to queue
-# queue = sqs.get_queue_by_name(QueueName="test")
-# queue.send_message(MessageBody="Heelllooo World!")
+queue = sqs.get_queue_by_name(QueueName="test")
+queue.send_message(MessageBody="Heelllooo World!")
 
 # !TODO Send bulk messages to queue
-# count = 0
-# messages = []
-# for i in range(0, 5):
-#     messages.append({"Id": str(count), "MessageBody": f"Another order is in {count} "})
-#     count += 1
-# queue.send_messages(Entries=messages)
+count = 0
+messages = []
+for i in range(0, 5):
+    messages.append({"Id": str(count), "MessageBody": f"Another order is in {count} "})
+    count += 1
+queue.send_messages(Entries=messages)
 
 # !TODO Read Messages [Processed in batches]
 # Talk about the different attributes
