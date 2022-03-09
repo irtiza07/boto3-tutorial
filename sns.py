@@ -1,16 +1,19 @@
 import boto3
 
-TOPIC_ARN = "arn:aws:sns:us-east-1:725314774014:youtube_test_topic"
 sns = boto3.client("sns")
 
-# TODO: Create new topic
-response = sns.create_topic(Name="youtube_test_topic")
-print(response)
+# Create new topic
+# response = sns.create_topic(Name="demo_youtube_topic")
+# print(response)
 
-# TODO: List all topics
-response = sns.list_topics()
-print(response["Topics"])
+# List all topics
+# response = sns.list_topics()
+# print(response["Topics"])
 
-# TODO: Publish to topics
+# Publish to topic
+DEMO_YOUTUBE_TEST_TOPIC_SNS_ARN = (
+    "arn:aws:sns:us-east-1:725314774014:demo_youtube_topic"
+)
 for i in range(100):
-    sns.publish(TopicArn=TOPIC_ARN, Message=f"Hello World! {i}")
+    print(f"Publishing message: {i}")
+    sns.publish(TopicArn=DEMO_YOUTUBE_TEST_TOPIC_SNS_ARN, Message=f"Hello World! {i}")
